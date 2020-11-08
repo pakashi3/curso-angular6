@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, EventEmitter, Output } from '@angular/core';
 import { DestinoViajes } from './../models/destino-viaje.models';
 
 @Component({
@@ -7,12 +7,19 @@ import { DestinoViajes } from './../models/destino-viaje.models';
   styleUrls: ['./destino-viaje.component.css']
 })
 export class DestinoViajeComponent implements OnInit {
-
   @Input() destinos: DestinoViajes;
   @HostBinding('attr.class') cssClass = 'col-md-4';
-  constructor() {}
+  @Output() clicked: EventEmitter<DestinoViajes>;
+
+  constructor() {
+    this.clicked = new EventEmitter();
+  }
 
   ngOnInit() {
   }
 
+  ir() {
+    this.clicked.emit(this.destinos);
+    return false;
+  }
 }

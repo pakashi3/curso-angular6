@@ -14,11 +14,14 @@ export class ListaDestinosComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   guardar(n:string, u:string):boolean {
     this.destinos.push(new DestinoViajes(n, u));
-    console.log(this.destinos);
-
     return false;
   }
 
+  elegido(d: DestinoViajes) {
+    this.destinos.forEach(function (x) {x.setSelected(false); });
+    d.setSelected(true);
+  }
 }
